@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joyful Health — Ops Team Swimlanes</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #F7F6F3;
+      color: #1C1917;
+      min-height: 100vh;
+      padding: 40px 24px 60px;
+    }
+
+    /* ── Page Header ─────────────────────────────── */
+    .page-header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .page-header .company-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #78716C;
+      margin-bottom: 8px;
+    }
+    .page-header h1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: #1C1917;
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+    .page-header .subtitle {
+      font-size: 14px;
+      color: #78716C;
+    }
+
+    /* ── Renée bar ───────────────────────────────── */
+    .renee-bar {
+      background: #1C1917;
+      color: #fff;
+      border-radius: 14px;
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 12px;
+      max-width: 1060px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .renee-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #F59E0B, #EF4444);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      flex-shrink: 0;
+      color: #fff;
+    }
+    .renee-text .role-name {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .renee-text .role-title {
+      font-size: 12px;
+      color: #A8A29E;
+      margin-top: 1px;
+    }
+    .renee-bar .renee-tag {
+      margin-left: auto;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #A8A29E;
+      background: rgba(255,255,255,0.07);
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* ── Connector arrows ────────────────────────── */
+    .connector {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      max-width: 1060px;
+      margin: 0 auto 8px;
+    }
+    .connector-line {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .connector-line .dot {
+      width: 2px;
+      height: 20px;
+      background: #D6D3D1;
+    }
+    .connector-line .arrowhead {
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 6px solid #D6D3D1;
+    }
+
+    /* ── Swimlanes grid ──────────────────────────── */
+    .lanes {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      max-width: 1420px;
+      margin: 0 auto;
+    }
+
+    /* ── Single lane card ────────────────────────── */
+    .lane {
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+    }
+
+    .lane-header {
+      padding: 20px 20px 16px;
+      position: relative;
+    }
+    .lane-header .avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 15px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .lane-header .person-name {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .lane-header .person-role {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-top: 3px;
+      opacity: 0.7;
+    }
+    .lane-header .focus-pill {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.3);
+      backdrop-filter: blur(4px);
+    }
+
+    .lane-body {
+      padding: 0 16px 20px;
+    }
+
+    /* ── Section blocks ──────────────────────────── */
+    .section {
+      margin-top: 14px;
+    }
+    .section-label {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .section-label .icon {
+      font-size: 12px;
+    }
+    .items {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .item {
+      font-size: 13px;
+      line-height: 1.4;
+      padding: 6px 10px;
+      border-radius: 7px;
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+    }
+    .item .bullet {
+      flex-shrink: 0;
+      font-size: 11px;
+      margin-top: 1px;
+      font-weight: 700;
+    }
+
+    .divider {
+      height: 1px;
+      background: #F5F5F4;
+      margin: 14px 0 0;
+    }
+
+    /* ── XFN pill cluster ────────────────────────── */
+    .xfn-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 7px;
+    }
+    .xfn-pill {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 20px;
+      border: 1.5px solid;
+    }
+
+    /* ── Simone: Amber ───────────────────────────── */
+    .lane-simone .lane-header {
+      background: linear-gradient(135deg, #D97706, #F59E0B);
+      color: #fff;
+    }
+    .lane-simone .avatar { background: rgba(255,255,255,0.25); color: #fff; }
+    .lane-simone .owns .section-label { color: #92400E; }
+    .lane-simone .owns .item { background: #FFFBEB; }
+    .lane-simone .owns .bullet { color: #D97706; }
+    .lane-simone .notown .section-label { color: #92400E; }
+    .lane-simone .notown .item { background: #FEF3C7; opacity: 0.8; }
+    .lane-simone .notown .bullet { color: #B45309; }
+    .lane-simone .workstreams .section-label { color: #92400E; }
+    .lane-simone .workstreams .item { background: #FFF7ED; }
+    .lane-simone .workstreams .bullet { color: #EA580C; }
+    .lane-simone .xfn .section-label { color: #92400E; }
+    .lane-simone .xfn-pill { border-color: #FDE68A; color: #92400E; background: #FFFBEB; }
+
+    /* ── Noah: Teal ──────────────────────────────── */
+    .lane-noah .lane-header {
+      background: linear-gradient(135deg, #0F766E, #0D9488);
+      color: #fff;
+    }
+    .lane-noah .avatar { background: rgba(255,255,255,0.2); color: #fff; }
+    .lane-noah .owns .section-label { color: #134E4A; }
+    .lane-noah .owns .item { background: #F0FDFA; }
+    .lane-noah .owns .bullet { color: #0D9488; }
+    .lane-noah .notown .section-label { color: #134E4A; }
+    .lane-noah .notown .item { background: #CCFBF1; opacity: 0.8; }
+    .lane-noah .notown .bullet { color: #0F766E; }
+    .lane-noah .workstreams .section-label { color: #134E4A; }
+    .lane-noah .workstreams .item { background: #F0FDFA; }
+    .lane-noah .workstreams .bullet { color: #0891B2; }
+    .lane-noah .xfn .section-label { color: #134E4A; }
+    .lane-noah .xfn-pill { border-color: #99F6E4; color: #134E4A; background: #F0FDFA; }
+
+    /* ── CS: Rose ────────────────────────────────── */
+    .lane-cs .lane-header {
+      background: linear-gradient(135deg, #BE185D, #EC4899);
+      color: #fff;
+    }
+    .lane-cs .avatar { background: rgba(255,255,255,0.2); color: #fff; }
+    .lane-cs .owns .section-label { color: #881337; }
+    .lane-cs .owns .item { background: #FFF1F2; }
+    .lane-cs .owns .bullet { color: #BE185D; }
+    .lane-cs .notown .section-label { color: #881337; }
+    .lane-cs .notown .item { background: #FCE7F3; opacity: 0.8; }
+    .lane-cs .notown .bullet { color: #BE185D; }
+    .lane-cs .workstreams .section-label { color: #881337; }
+    .lane-cs .workstreams .item { background: #FFF1F2; }
+    .lane-cs .workstreams .bullet { color: #DB2777; }
+    .lane-cs .xfn .section-label { color: #881337; }
+    .lane-cs .xfn-pill { border-color: #FBCFE8; color: #881337; background: #FFF1F2; }
+
+    /* ── Jake: Purple ────────────────────────────── */
+    .lane-jake .lane-header {
+      background: linear-gradient(135deg, #6D28D9, #7C3AED);
+      color: #fff;
+    }
+    .lane-jake .avatar { background: rgba(255,255,255,0.2); color: #fff; }
+    .lane-jake .owns .section-label { color: #4C1D95; }
+    .lane-jake .owns .item { background: #F5F3FF; }
+    .lane-jake .owns .bullet { color: #7C3AED; }
+    .lane-jake .notown .section-label { color: #4C1D95; }
+    .lane-jake .notown .item { background: #EDE9FE; opacity: 0.8; }
+    .lane-jake .notown .bullet { color: #6D28D9; }
+    .lane-jake .workstreams .section-label { color: #4C1D95; }
+    .lane-jake .workstreams .item { background: #F5F3FF; }
+    .lane-jake .workstreams .bullet { color: #7C3AED; }
+    .lane-jake .xfn .section-label { color: #4C1D95; }
+    .lane-jake .xfn-pill { border-color: #DDD6FE; color: #4C1D95; background: #F5F3FF; }
+
+    /* ── Footer ──────────────────────────────────── */
+    .footer {
+      max-width: 1060px;
+      margin: 24px auto 0;
+      padding: 16px 20px;
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid #E7E5E4;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+      color: #78716C;
+    }
+    .footer strong {
+      color: #1C1917;
+    }
+    .footer .divvider {
+      width: 1px;
+      height: 20px;
+      background: #E7E5E4;
+      flex-shrink: 0;
+    }
+
+    /* ── Responsive ──────────────────────────────── */
+    @media (max-width: 800px) {
+      .lanes { grid-template-columns: 1fr 1fr; }
+      .lanes > .lane:last-child { grid-column: span 2; }
+      .connector { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-header">
+    <div class="company-label">Joyful Health</div>
+    <h1>Operations Team Swimlanes</h1>
+    <div class="subtitle">Who owns what — and what they don't</div>
+  </div>
+
+  <!-- Renée header bar -->
+  <div class="renee-bar">
+    <div class="renee-avatar">R</div>
+    <div class="renee-text">
+      <div class="role-name">Renée Zhu</div>
+      <div class="role-title">Head of Operations — Architect · Operational Planning · Service Line P&amp;L Management · Culture Calibrator · Strategic Partner to Founders</div>
+    </div>
+  </div>
+
+  <!-- Connectors -->
+  <div class="connector">
+    <div class="connector-line"><div class="dot"></div><div class="arrowhead"></div></div>
+    <div class="connector-line"><div class="dot"></div><div class="arrowhead"></div></div>
+    <div class="connector-line"><div class="dot"></div><div class="arrowhead"></div></div>
+  </div>
+
+  <!-- Swimlanes -->
+  <div class="lanes">
+
+    <!-- ── SIMONE ─────────────────────────────── -->
+    <div class="lane lane-simone">
+      <div class="lane-header">
+        <div class="avatar">S</div>
+        <div class="person-name">Simone</div>
+        <div class="person-role">Strategy &amp; Ops Lead</div>
+        <div class="focus-pill">Revenue Recovery Strategy &amp; Operations</div>
+      </div>
+
+      <div class="lane-body">
+
+        <div class="section owns">
+          <div class="section-label"><span class="icon">✦</span> Owns</div>
+          <div class="items">
+            <div class="item"><span class="bullet">✓</span>End-to-end quality and delivery standards for revenue recovery, from flagging initial account claims to customer invoicing</div>
+            <div class="item"><span class="bullet">✓</span>QA program design &amp; management</div>
+            <div class="item"><span class="bullet">✓</span>Optimization across all stages of a customer's revenue recovery lifecycle</div>
+            <div class="item"><span class="bullet">✓</span>Product voice for anything that affects the revenue recovery service</div>
+            <div class="item"><span class="bullet">✓</span>Biller &amp; QA Specialist forecasting model</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section notown">
+          <div class="section-label"><span class="icon">◌</span> Does not own</div>
+          <div class="items">
+            <div class="item"><span class="bullet">✗</span>Customer relationships &amp; retention (→ Director of CS)</div>
+            <div class="item"><span class="bullet">✗</span>Enterprise delivery motion (→ Jake)</div>
+            <div class="item"><span class="bullet">✗</span>Internal systems, onboarding &amp; provisioning (→ Noah)</div>
+            <div class="item"><span class="bullet">✗</span>BPO vendor management &amp; staffing execution (→ Noah)</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section workstreams">
+          <div class="section-label"><span class="icon">◈</span> Standing workstreams</div>
+          <div class="items">
+            <div class="item"><span class="bullet">→</span>QA program design &amp; ongoing management</div>
+            <div class="item"><span class="bullet">→</span>Customer onboarding / offboarding execution &amp; continuous improvement</div>
+            <div class="item"><span class="bullet">→</span>Biller &amp; QA Specialist forecasting model</div>
+            <div class="item"><span class="bullet">→</span>Service line performance tracking</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section xfn">
+          <div class="section-label"><span class="icon">⊹</span> Key Partners</div>
+          <div class="xfn-pills">
+            <span class="xfn-pill">Customer Success</span>
+            <span class="xfn-pill">RCM CoE</span>
+            <span class="xfn-pill">QA Specialists</span>
+            <span class="xfn-pill">Engineering</span>
+            <span class="xfn-pill">GTM</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── NOAH ───────────────────────────────── -->
+    <div class="lane lane-noah">
+      <div class="lane-header">
+        <div class="avatar">N</div>
+        <div class="person-name">Noah</div>
+        <div class="person-role">People &amp; Biz Ops Lead</div>
+        <div class="focus-pill">Internal Systems &amp; Enablement</div>
+      </div>
+
+      <div class="lane-body">
+
+        <div class="section owns">
+          <div class="section-label"><span class="icon">✦</span> Owns</div>
+          <div class="items">
+            <div class="item"><span class="bullet">✓</span>BPO staffing orchestration, onboarding &amp; training coordination</div>
+            <div class="item"><span class="bullet">✓</span>BPO performance reporting (MBR/QBR)</div>
+            <div class="item"><span class="bullet">✓</span>Internal onboarding systems &amp; new hire experience</div>
+            <div class="item"><span class="bullet">✓</span>Workplace &amp; employee experience operations</div>
+            <div class="item"><span class="bullet">✓</span>Vendor spend tracking &amp; internal budget ops</div>
+            <div class="item"><span class="bullet">✓</span>Business Performance &amp; Revenue Intelligence reporting</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section notown">
+          <div class="section-label"><span class="icon">◌</span> Does not own</div>
+          <div class="items">
+            <div class="item"><span class="bullet">✗</span>Customer-facing work</div>
+            <div class="item"><span class="bullet">✗</span>Enterprise delivery or XFN coordination (→ Jake)</div>
+            <div class="item"><span class="bullet">✗</span>RCM strategy or service delivery quality (→ Simone)</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section workstreams">
+          <div class="section-label"><span class="icon">◈</span> Standing workstreams</div>
+          <div class="items">
+            <div class="item"><span class="bullet">→</span>BPO staffing request intake &amp; fulfillment</div>
+            <div class="item"><span class="bullet">→</span>Internal team onboarding management</div>
+            <div class="item"><span class="bullet">→</span>Workplace ops &amp; office management</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section xfn">
+          <div class="section-label"><span class="icon">⊹</span> Key Partners</div>
+          <div class="xfn-pills">
+            <span class="xfn-pill">BPO Partners</span>
+            <span class="xfn-pill">Engineering</span>
+            <span class="xfn-pill">S&amp;O Leads</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── JAKE ───────────────────────────────── -->
+    <div class="lane lane-jake">
+      <div class="lane-header">
+        <div class="avatar">J</div>
+        <div class="person-name">Jake</div>
+        <div class="person-role">Strategy &amp; Ops Lead</div>
+        <div class="focus-pill">Enterprise Strategy &amp; Operations</div>
+      </div>
+
+      <div class="lane-body">
+
+        <div class="section owns">
+          <div class="section-label"><span class="icon">✦</span> Owns</div>
+          <div class="items">
+            <div class="item"><span class="bullet">✓</span>Enterprise go-live motion end-to-end (decision → launch → expansion)</div>
+            <div class="item"><span class="bullet">✓</span>Enterprise operating system — playbooks, stakeholder maps, delivery cadence</div>
+            <div class="item"><span class="bullet">✓</span>Cross-functional coordination for enterprise delivery (GTM, Ops, Eng)</div>
+            <div class="item"><span class="bullet">✓</span>Product &amp; offering feedback loops from enterprise customers</div>
+            <div class="item"><span class="bullet">✓</span>Enterprise customer expansion readiness &amp; success metrics</div>
+            <div class="item"><span class="bullet">✓</span>Escalation paths &amp; risk logs for enterprise workstreams</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section notown">
+          <div class="section-label"><span class="icon">◌</span> Does not own</div>
+          <div class="items">
+            <div class="item"><span class="bullet">✗</span>Revenue recovery quality &amp; delivery standards (→ Simone)</div>
+            <div class="item"><span class="bullet">✗</span>Internal systems, onboarding &amp; provisioning (→ Noah)</div>
+            <div class="item"><span class="bullet">✗</span>Individual biller or BPO management (→ Noah / Simone)</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section workstreams">
+          <div class="section-label"><span class="icon">◈</span> Standing workstreams</div>
+          <div class="items">
+            <div class="item"><span class="bullet">→</span>Enterprise launch plans &amp; kickoff execution</div>
+            <div class="item"><span class="bullet">→</span>Enterprise delivery cadence &amp; status tracking</div>
+            <div class="item"><span class="bullet">→</span>Product feedback synthesis &amp; escalation</div>
+            <div class="item"><span class="bullet">→</span>Enterprise post-mortems &amp; expansion planning</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section xfn">
+          <div class="section-label"><span class="icon">⊹</span> Key Partners</div>
+          <div class="xfn-pills">
+            <span class="xfn-pill">GTM</span>
+            <span class="xfn-pill">Engineering</span>
+            <span class="xfn-pill">RCM</span>
+            <span class="xfn-pill">Enterprise Customers</span>
+            <span class="xfn-pill">Customer Success</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── DIRECTOR OF CS ───────────────────────── -->
+    <div class="lane lane-cs">
+      <div class="lane-header">
+        <div class="avatar">CS</div>
+        <div class="person-name">Director of CS</div>
+        <div class="person-role">Director of Customer Success</div>
+        <div class="focus-pill">Customer Success</div>
+      </div>
+
+      <div class="lane-body">
+
+        <div class="section owns">
+          <div class="section-label"><span class="icon">✦</span> Owns</div>
+          <div class="items">
+            <div class="item"><span class="bullet">✓</span>Retention and expansion outcomes (NRR, GRR) across full customer base</div>
+            <div class="item"><span class="bullet">✓</span>RSM team leadership &amp; development</div>
+            <div class="item"><span class="bullet">✓</span>CS operating model — QBR templates, escalation protocols, onboarding playbooks</div>
+            <div class="item"><span class="bullet">✓</span>Voice of the Customer to product</div>
+            <div class="item"><span class="bullet">✓</span>Customer health &amp; account health tracking</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section notown">
+          <div class="section-label"><span class="icon">◌</span> Does not own</div>
+          <div class="items">
+            <div class="item"><span class="bullet">✗</span>Revenue recovery service quality (→ Simone)</div>
+            <div class="item"><span class="bullet">✗</span>Enterprise delivery model (→ Jake)</div>
+            <div class="item"><span class="bullet">✗</span>Internal systems &amp; team onboarding (→ Noah)</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section workstreams">
+          <div class="section-label"><span class="icon">◈</span> Standing workstreams</div>
+          <div class="items">
+            <div class="item"><span class="bullet">→</span>QBR cadence &amp; execution</div>
+            <div class="item"><span class="bullet">→</span>RSM team management &amp; coaching</div>
+            <div class="item"><span class="bullet">→</span>Retention &amp; expansion tracking</div>
+            <div class="item"><span class="bullet">→</span>Customer escalation protocols</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section xfn">
+          <div class="section-label"><span class="icon">⊹</span> Key Partners</div>
+          <div class="xfn-pills">
+            <span class="xfn-pill">GTM</span>
+            <span class="xfn-pill">RCM CoE</span>
+            <span class="xfn-pill">Engineering</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div style="text-align:center; color: #A8A29E; font-size: 12px; padding: 24px 0;">Last updated Feb 2026</div>
+
+</body>
+</html>
