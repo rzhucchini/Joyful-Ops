@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Joyful Health — Team Structure</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f9f7f4;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+  }
+  h1 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #2d2d2d;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+  .subtitle {
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 48px;
+  }
+
+  /* ─── CANVAS ─── */
+  .canvas {
+    position: relative;
+    width: 980px;
+    height: 820px;
+  }
+
+  /* ─── SVG LINES ─── */
+  .lines {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+  }
+
+  /* ─── BUBBLE BASE ─── */
+  .bubble {
+    position: absolute;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 14px;
+    cursor: default;
+    transition: transform 0.2s;
+  }
+  .bubble:hover { transform: scale(1.04); }
+  .bubble .label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+  }
+  .bubble .role {
+    font-size: 0.68rem;
+    font-weight: 400;
+    margin-top: 3px;
+    opacity: 0.8;
+  }
+  .bubble .people {
+    font-size: 0.63rem;
+    margin-top: 5px;
+    opacity: 0.7;
+    line-height: 1.5;
+  }
+  .bubble .fns {
+    font-size: 0.62rem;
+    margin-top: 5px;
+    opacity: 0.75;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  /* ─── CENTER FOUNDERS ─── */
+  .founders {
+    left: 330px; top: 290px;
+    width: 240px; height: 240px;
+    background: linear-gradient(135deg, #5b4fcf, #9b59d0);
+    color: #fff;
+    box-shadow: 0 8px 32px rgba(91,79,207,0.35);
+    z-index: 10;
+  }
+  .founders .label { font-size: 0.9rem; }
+
+  /* ─── ENG ─── */
+  .eng {
+    left: 590px; top: 60px;
+    width: 230px; height: 230px;
+    padding: 8px;
+    background: linear-gradient(135deg, #2980b9, #1abc9c);
+    color: #fff;
+    box-shadow: 0 6px 24px rgba(41,128,185,0.3);
+  }
+
+  /* ─── RCM ─── */
+  .rcm {
+    left: 620px; top: 480px;
+    width: 200px; height: 200px;
+    background: linear-gradient(135deg, #e67e22, #e74c3c);
+    color: #fff;
+    box-shadow: 0 6px 24px rgba(230,126,34,0.3);
+  }
+
+  /* ─── OPS ─── */
+  .ops {
+    left: 70px; top: 460px;
+    width: 230px; height: 230px;
+    padding: 8px;
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    color: #fff;
+    box-shadow: 0 6px 24px rgba(39,174,96,0.3);
+  }
+
+  /* ─── GTM ─── */
+  .gtm {
+    left: 60px; top: 100px;
+    width: 185px; height: 185px;
+    background: linear-gradient(135deg, #f39c12, #f1c40f);
+    color: #fff;
+    box-shadow: 0 6px 24px rgba(243,156,18,0.3);
+  }
+
+  /* ─── VENDOR / CONTRACTOR SMALL BUBBLES ─── */
+  .small {
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    border: 2px dashed;
+  }
+  .purview {
+    left: 770px; top: 420px;
+    background: #fff3ee;
+    border-color: #e74c3c;
+    color: #c0392b;
+  }
+  .mmm {
+    left: 770px; top: 570px;
+    background: #fff3ee;
+    border-color: #e74c3c;
+    color: #c0392b;
+  }
+  .cfo {
+    left: 370px; top: 30px;
+    background: #f5f0ff;
+    border-color: #9b59d0;
+    color: #6c3483;
+  }
+  .mktg {
+    left: 180px; top: 30px;
+    background: #f5f0ff;
+    border-color: #9b59d0;
+    color: #6c3483;
+  }
+  .analytics-c {
+    left: 770px; top: 260px;
+    background: #eaf6ff;
+    border-color: #2980b9;
+    color: #1a5276;
+  }
+  .small .label { font-size: 0.67rem; }
+  .small .role { font-size: 0.6rem; }
+
+  /* ─── LEGEND ─── */
+  .legend {
+    margin-top: 32px;
+    display: flex;
+    gap: 28px;
+    font-size: 0.75rem;
+    color: #666;
+    align-items: center;
+  }
+  .legend span { display: flex; align-items: center; gap: 6px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+</style>
+</head>
+<body>
+
+<h1>Joyful Health</h1>
+<p class="subtitle">Team Structure &amp; Functions</p>
+
+<div class="canvas">
+
+  <!-- SVG CONNECTION LINES -->
+  <svg class="lines">
+    <!-- founders → eng -->
+    <line x1="570" y1="350" x2="695" y2="165" stroke="#b0a8e8" stroke-width="2"/>
+    <!-- founders → rcm -->
+    <line x1="570" y1="420" x2="720" y2="520" stroke="#b0a8e8" stroke-width="2"/>
+    <!-- founders → ops -->
+    <line x1="330" y1="420" x2="185" y2="515" stroke="#b0a8e8" stroke-width="2"/>
+    <!-- founders → gtm -->
+    <line x1="370" y1="320" x2="200" y2="235" stroke="#b0a8e8" stroke-width="2"/>
+
+    <!-- founders → cfo contractor (dotted) -->
+    <line x1="430" y1="290" x2="430" y2="150" stroke="#c39bd3" stroke-width="1.5" stroke-dasharray="5,4"/>
+    <!-- founders → mktg contractor (dotted) -->
+    <line x1="390" y1="295" x2="240" y2="145" stroke="#c39bd3" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+    <!-- rcm → purview (dotted) -->
+    <line x1="820" y1="555" x2="830" y2="480" stroke="#e67e22" stroke-width="1.5" stroke-dasharray="5,4"/>
+    <!-- rcm → MMM (dotted) -->
+    <line x1="820" y1="580" x2="832" y2="642" stroke="#e67e22" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+    <!-- eng → analytics contractor (dotted) -->
+    <line x1="800" y1="230" x2="830" y2="310" stroke="#2980b9" stroke-width="1.5" stroke-dasharray="5,4"/>
+  </svg>
+
+  <!-- FOUNDERS (CENTER) -->
+  <div class="bubble founders">
+    <div class="label">Leadership</div>
+    <div class="people" style="margin-top:8px; font-size:0.72rem; font-weight:600; opacity:1">
+      Eliana · CEO<br>Warren · CTO
+    </div>
+    <div class="fns">Vision &amp; Strategy<br>Company Direction</div>
+  </div>
+
+  <!-- ENGINEERING -->
+  <div class="bubble eng">
+    <div class="label">Engineering</div>
+    <div class="role">Warren's Org</div>
+    <div class="fns">Data &amp; Analytics<br>Infrastructure<br>Platform &amp; Product</div>
+    <div class="people" style="white-space:nowrap">Nathan · Vince · Rachel · Patrick</div>
+  </div>
+
+  <!-- RCM -->
+  <div class="bubble rcm">
+    <div class="label">RCM</div>
+    <div class="role">Head: Becky</div>
+    <div class="fns">Revenue Recovery<br>Billing &amp; Claims<br>Customer-Facing Ops</div>
+    <div class="people">Pinali · Hannah · Josh</div>
+  </div>
+
+  <!-- OPERATIONS -->
+  <div class="bubble ops">
+    <div class="label">Operations</div>
+    <div class="role">Head: Renée</div>
+    <div class="fns">Service Operations<br>People &amp; Biz Ops<br>Finance Operations</div>
+    <div class="people" style="white-space:nowrap">Simone · Noah · Jake · <em>Dir. CS (hiring)</em></div>
+  </div>
+
+  <!-- GTM -->
+  <div class="bubble gtm">
+    <div class="label">GTM</div>
+    <div class="role" style="color:#fff">Sales &amp; Growth</div>
+    <div class="people" style="margin-top:6px">Arjun · Adam</div>
+  </div>
+
+  <!-- VENDORS / CONTRACTORS (dashed) -->
+  <div class="bubble small purview" style="left:770px; top:420px">
+    <div class="label">Purview</div>
+    <div class="role">Offshore BPO<br>RCM Billing</div>
+  </div>
+
+  <div class="bubble small mmm" style="left:772px; top:580px">
+    <div class="label">My Mountain Mover</div>
+    <div class="role">QA Specialists</div>
+  </div>
+
+  <div class="bubble small cfo" style="left:370px; top:30px">
+    <div class="label">Fractional CFO</div>
+    <div class="role">Finance<br>Contractor</div>
+  </div>
+
+  <div class="bubble small mktg" style="left:180px; top:30px">
+    <div class="label">Marketing</div>
+    <div class="role">Marketing<br>Contractor</div>
+  </div>
+
+  <div class="bubble small analytics-c" style="left:770px; top:260px">
+    <div class="label">Analytics</div>
+    <div class="role">Analytics<br>Contractor</div>
+  </div>
+
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <span><div class="dot" style="background:#b0a8e8"></div> Reports to leadership</span>
+  <span>
+    <svg width="28" height="10"><line x1="0" y1="5" x2="28" y2="5" stroke="#aaa" stroke-width="2" stroke-dasharray="5,3"/></svg>
+    Vendor / Contractor (dotted line)
+  </span>
+</div>
+
+</body>
+</html>
