@@ -8,32 +8,19 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-      background: #F7F6F3;
-      color: #1C1917;
-      min-height: 100vh;
-      padding: 44px 20px 64px;
-      -webkit-font-smoothing: antialiased;
+      background: #F7F6F3; color: #1C1917; min-height: 100vh;
+      padding: 44px 20px 60px; -webkit-font-smoothing: antialiased;
+      overflow-x: auto;
     }
     .wrap { max-width: 940px; min-width: 860px; margin: 0 auto; }
 
-    /* ── Page header ─────────────────────────── */
     .page-head { text-align: center; margin-bottom: 30px; }
-    .page-head .eyebrow {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.16em;
-      text-transform: uppercase; color: #78716C; margin-bottom: 8px;
-    }
-    .page-head h1 {
-      font-size: 27px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 6px;
-    }
+    .page-head .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #78716C; margin-bottom: 8px; }
+    .page-head h1 { font-size: 27px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 6px; }
     .page-head .sub { font-size: 13px; color: #A8A29E; }
 
-    /* ── Shared bits ─────────────────────────── */
     .stem { width: 2px; height: 18px; background: #C7C3BD; margin: 12px auto; }
-    .mono {
-      width: 30px; height: 30px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 12px; font-weight: 800; flex-shrink: 0; color: #fff;
-    }
+    .mono { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0; color: #fff; }
     .mono.open { background: transparent !important; border: 1.5px dashed #A8A29E; color: #A8A29E; }
 
     .card { background: #fff; border: 1px solid #E7E5E4; border-radius: 12px; padding: 12px 14px; }
@@ -42,16 +29,10 @@
     .card .rl { font-size: 9.5px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #78716C; margin-top: 1px; }
     .card .ln { font-size: 11.5px; color: #57534E; line-height: 1.4; margin-top: 8px; }
 
-    .band-label {
-      text-align: center; font-size: 10px; font-weight: 800; letter-spacing: 0.1em;
-      text-transform: uppercase; color: #A8A29E; margin-bottom: 10px;
-    }
+    .band-label { text-align: center; font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #A8A29E; margin-bottom: 10px; }
 
-    /* ── General Ops (Renée + Caroline) ──────── */
-    .renee {
-      background: #1C1917; color: #fff; border-radius: 14px;
-      padding: 14px 22px; width: 580px; max-width: 100%; margin: 0 auto;
-    }
+    /* ── General Ops top bar ─────────────────── */
+    .renee { background: #1C1917; color: #fff; border-radius: 14px; padding: 14px 22px; width: 580px; max-width: 100%; margin: 0 auto; }
     .renee .go { font-size: 9px; font-weight: 800; letter-spacing: 0.13em; text-transform: uppercase; color: #A8A29E; margin-bottom: 7px; }
     .renee .row { display: flex; align-items: center; gap: 11px; }
     .renee .mono { background: linear-gradient(135deg,#F59E0B,#EF4444); }
@@ -64,10 +45,7 @@
     .renee .caro .cr { font-size: 9.5px; color: #A8A29E; letter-spacing: 0.03em; }
 
     /* ── Customer Success band ───────────────── */
-    .cs {
-      background: #FFF1F2; border: 1px solid #FBCFE8; border-radius: 15px;
-      padding: 15px 18px; text-align: center;
-    }
+    .cs { background: #FFF1F2; border: 1px solid #FBCFE8; border-radius: 15px; padding: 15px 18px; text-align: center; }
     .cs .head { display: inline-flex; align-items: center; gap: 10px; }
     .cs .mono { background: #BE185D; }
     .cs .nm { font-size: 14.5px; font-weight: 800; }
@@ -79,10 +57,8 @@
     .rc .rn { font-size: 12.5px; font-weight: 800; color: #7d4a5c; }
     .rc .rt { font-size: 8.5px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: #C77D96; margin-top: 2px; }
 
-    /* ── Split into products ─────────────────── */
-    .split { width: 60%; max-width: 460px; height: 2px; background: #C7C3BD; margin: 14px auto 0; }
-    .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 14px; }
-
+    /* ── Products ────────────────────────────── */
+    .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
     .prod { border-radius: 16px; padding: 14px; }
     .prod.rr { background: #FEF6EC; border: 1px solid #F5D9A8; }
     .prod.di { background: #F3F0FE; border: 1px solid #DDD6FE; }
@@ -91,33 +67,24 @@
     .prod .pn { text-align: center; font-size: 16px; font-weight: 800; letter-spacing: -0.02em; margin: 3px 0 12px; line-height: 1.15; }
     .prod.rr .pn { color: #7c3f07; } .prod.di .pn { color: #4C1D95; }
     .prod .lead .mono.rr { background: #D97706; } .prod .lead .mono.di { background: #7C3AED; }
-
-    .sub {
-      border: 1.5px dashed #C7C3BD; border-radius: 11px; padding: 10px 12px;
-      margin-top: 10px; background: rgba(255,255,255,0.6);
-    }
+    .sub { border: 1.5px dashed #C7C3BD; border-radius: 11px; padding: 10px 12px; margin-top: 10px; background: rgba(255,255,255,0.6); }
     .sub .sl { font-size: 9px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #78716C; margin-bottom: 4px; }
     .sub .sn { font-size: 12.5px; font-weight: 800; }
     .sub .sr { font-size: 9px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: #78716C; }
     .sub .sd { font-size: 11.5px; color: #57534E; line-height: 1.4; margin-top: 4px; }
-    .sub .names { font-size: 11.5px; font-weight: 700; color: #44403C; margin-top: 6px; letter-spacing: 0.01em; }
+    .sub .names { font-size: 11.5px; font-weight: 700; color: #44403C; margin-top: 6px; }
 
-    /* ── Shared engine ───────────────────────── */
-    .engine-wrap { margin-top: 6px; }
-    .engine { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; }
-    .engine .mono { background: #57534E; }
+    /* ── Shared S&O Engine band ──────────────── */
+    .engine-band { background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 15px; padding: 15px 18px; text-align: center; }
+    .engine-band .eb-title { font-size: 13px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #1E3A8A; }
+    .engine-band .eb-sub { font-size: 12px; color: #5578AE; margin: 3px 0 13px; }
+    .engine { display: grid; grid-template-columns: repeat(2, 1fr); gap: 13px; max-width: 680px; margin: 0 auto; }
+    .engine-band .card { border-color: #BFDBFE; text-align: left; }
+    .engine .mono { background: #2563EB; }
 
-    /* ── Footer ──────────────────────────────── */
-    .foot {
-      margin-top: 30px; padding-top: 16px; border-top: 1px solid #E7E5E4;
-      display: flex; justify-content: center; gap: 18px; flex-wrap: wrap;
-      font-size: 11px; color: #A8A29E;
-    }
+    .foot { margin-top: 30px; padding-top: 16px; border-top: 1px solid #E7E5E4; display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; font-size: 11px; color: #A8A29E; }
     .foot .key { display: inline-flex; align-items: center; gap: 6px; }
     .foot .dash { width: 20px; border-top: 1.5px dashed #A8A29E; }
-
-    /* ── Layout stays fixed; scroll rather than restack ── */
-    body { overflow-x: auto; }
   </style>
 </head>
 <body>
@@ -134,18 +101,12 @@
     <div class="renee">
       <div class="row">
         <div class="mono">R</div>
-        <div>
-          <div class="nm">Renée Zhu</div>
-          <div class="rl">Head of Operations</div>
-        </div>
+        <div><div class="nm">Renée Zhu</div><div class="rl">Head of Operations</div></div>
       </div>
       <div class="ln">Accountable for Ops overall and the success of our operations post-sale — org design, cross-functional decisions, and the escalations that span the team.</div>
       <div class="caro">
         <div class="mono">C</div>
-        <div>
-          <div class="cn">Caroline Palsi</div>
-          <div class="cr">Employee Experience + EA · people-ops, workplace ops &amp; exec support</div>
-        </div>
+        <div><div class="cn">Caroline Palsi</div><div class="cr">Employee Experience + EA · people-ops, workplace ops &amp; exec support</div></div>
       </div>
     </div>
 
@@ -155,10 +116,7 @@
     <div class="cs">
       <div class="head">
         <div class="mono">R</div>
-        <div style="text-align:left">
-          <div class="nm">Reese Paoletti</div>
-          <div class="rl">Director of Customer Success</div>
-        </div>
+        <div style="text-align:left"><div class="nm">Reese Paoletti</div><div class="rl">Director of Customer Success</div></div>
       </div>
       <div class="d">The customer-facing layer — owns account health, retention &amp; expansion across both service lines.</div>
       <div class="rcsm-label">RCSM Team</div>
@@ -170,12 +128,10 @@
       </div>
     </div>
 
-    <div class="split"></div>
+    <div class="stem"></div>
 
-    <!-- Products -->
+    <!-- Service lines -->
     <div class="cols">
-
-      <!-- Revenue Recovery -->
       <div class="prod rr">
         <div class="ph">Service Line</div>
         <div class="pn">Revenue Recovery</div>
@@ -195,7 +151,6 @@
         </div>
       </div>
 
-      <!-- Denials Intelligence and Prevention -->
       <div class="prod di">
         <div class="ph">Service Line · Building v1</div>
         <div class="pn">Denials Intelligence and Prevention</div>
@@ -208,14 +163,14 @@
           <div class="sd">Works hand-in-hand with <strong>Engineering</strong>, the <strong>RCM Center of Excellence</strong>, and <strong>Customer Success</strong> to pin down the value customers want — and build and deliver it through the product.</div>
         </div>
       </div>
-
     </div>
 
     <div class="stem"></div>
 
-    <!-- Shared engine -->
-    <div class="engine-wrap">
-      <div class="band-label">Shared Engine · serves both products</div>
+    <!-- Shared S&O Engine -->
+    <div class="engine-band">
+      <div class="eb-title">Shared S&amp;O Engine</div>
+      <div class="eb-sub">Serves both service lines</div>
       <div class="engine">
         <div class="card">
           <div class="row"><div class="mono">N</div><div><div class="nm">Noah Basile</div><div class="rl">Biller Operations Lead</div></div></div>
@@ -224,10 +179,6 @@
         <div class="card">
           <div class="row"><div class="mono open">+</div><div><div class="nm">Customer Ops Lead</div><div class="rl">S&amp;O · Q3 Hire</div></div></div>
           <div class="ln">Owns systems under the customer experience; the CS team's right hand — onboarding, invoicing, and access.</div>
-        </div>
-        <div class="card">
-          <div class="row"><div class="mono open">+</div><div><div class="nm">General S&amp;O Lead</div><div class="rl">S&amp;O · Q4 Hire</div></div></div>
-          <div class="ln">Flex seat — Agent Ops, or a second customer-operations lane as we scale.</div>
         </div>
       </div>
     </div>
