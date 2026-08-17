@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joyful Health — How Decisions Get Made</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background: #F7F6F3;
+    color: #1C1917;
+    min-height: 100vh;
+    padding: 40px 20px 56px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: auto;
+  }
+  .wrap { max-width: 900px; min-width: 780px; margin: 0 auto; }
+
+  .eyebrow { text-align: center; font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: #78716C; margin-bottom: 6px; }
+  h1 { text-align: center; font-size: 22px; font-weight: 800; letter-spacing: -.02em; margin-bottom: 20px; }
+
+  .stem { width: 2px; height: 16px; background: #C7C3BD; margin: 10px auto; }
+  .dmtag { display: inline-block; font-size: 9px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; padding: 2px 8px; border-radius: 20px; margin-bottom: 5px; }
+
+  /* Renée + Caroline top bar */
+  .renee { background: #1C1917; color: #fff; border-radius: 14px; padding: 12px 18px; max-width: 480px; margin: 0 auto; }
+  .renee .dmtag { background: rgba(255,255,255,.15); color: #fff; }
+  .renee .row { display: flex; align-items: baseline; gap: 9px; flex-wrap: wrap; }
+  .renee .nm { font-size: 14px; font-weight: 800; }
+  .renee .rl { font-size: 10px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; color: #A8A29E; }
+  .renee .wgl { font-size: 11px; color: #C7C3BD; line-height: 1.4; margin-top: 5px; }
+  .renee .caro { display: flex; align-items: baseline; gap: 6px; margin-top: 8px; padding-top: 7px; border-top: 1px solid rgba(255,255,255,.12); flex-wrap: wrap; }
+  .renee .caro .cn { font-size: 11.5px; font-weight: 700; }
+  .renee .caro .cr { font-size: 10px; color: #A8A29E; }
+
+  /* Reese band */
+  .cs { background: #FFF1F2; border: 1px solid #FBCFE8; border-radius: 16px; padding: 16px 20px; text-align: center; }
+  .cs .dmtag { background: #BE185D; color: #fff; }
+  .cs .nm { font-size: 16px; font-weight: 800; margin-top: 2px; }
+  .cs .rl { font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #9F5A72; }
+  .cs .wgl { font-size: 12.5px; color: #7d4a5c; margin: 7px auto 11px; max-width: 560px; line-height: 1.45; }
+  .rcsms { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+  .rc { background: #fff; border: 1px solid #FBCFE8; border-radius: 8px; padding: 6px 12px; font-size: 12px; font-weight: 700; color: #7d4a5c; }
+
+  /* peer row */
+  .peers { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 16px; }
+  .card { border-radius: 15px; padding: 14px; }
+  .card .nm { font-size: 13.5px; font-weight: 800; }
+  .card .rl { font-size: 10px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; margin-top: 2px; }
+  .card .wgl { font-size: 11.5px; line-height: 1.42; margin-top: 8px; }
+  .card .subteam { margin-top: 9px; padding-top: 8px; border-top: 1px dashed; font-size: 10.5px; font-weight: 700; }
+
+  .simone { background: #FEF6EC; border: 1px solid #F5D9A8; }
+  .simone .dmtag { background: #D97706; color: #fff; }
+  .simone .rl { color: #92400E; }
+  .simone .wgl { color: #7c3f07; }
+  .simone .subteam { border-color: #F5D9A8; color: #92400E; }
+
+  .custops { background: #EFF6FF; border: 1px solid #BFDBFE; }
+  .custops .dmtag { background: #2563EB; color: #fff; }
+  .custops .rl { color: #1E3A8A; }
+  .custops .wgl { color: #1E40AF; }
+
+  .noah { background: #F0FDFA; border: 1px solid #99F6E4; }
+  .noah .dmtag { background: #0D9488; color: #fff; }
+  .noah .rl { color: #134E4A; }
+  .noah .wgl { color: #0f5c52; }
+  .noah .subteam { border-color: #99F6E4; color: #134E4A; }
+
+  .jake { background: #F5F3FF; border: 1.5px dashed #C4B5FD; }
+  .jake .dmtag { background: transparent; border: 1.5px dashed #7C3AED; color: #4C1D95; }
+  .jake .rl { color: #4C1D95; }
+  .jake .wgl { color: #4C1D95; }
+
+  .foot { text-align: center; font-size: 11px; color: #A8A29E; margin-top: 22px; }
+
+  @media (max-width: 900px) {
+    .peers { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">Joyful Health</div>
+  <h1>How Decisions Get Made</h1>
+
+  <div class="renee">
+    <div class="dmtag">Decision-maker</div>
+    <div class="row"><span class="nm">Renée Zhu</span><span class="rl">Ops org design, policy &amp; escalation</span></div>
+    <div class="wgl">Keeps the team organized and connected to company goals — the backstop when two areas can't agree, a decision spans outside Ops, or something isn't yet owned.</div>
+    <div class="caro"><span class="cn">Caroline Palsi</span><span class="cr">— Employee Experience &amp; People Ops, growing EA support for El &amp; Warren</span></div>
+  </div>
+
+  <div class="stem"></div>
+
+  <div class="cs">
+    <div class="dmtag">Decision-maker</div>
+    <div class="nm">Reese Paoletti</div>
+    <div class="rl">Customer retention, expansion &amp; escalations</div>
+    <div class="wgl">Accounts stay healthy and grow; escalations get owned end-to-end without re-verifying Simone's data underneath.</div>
+    <div class="rcsms">
+      <div class="rc">Erin</div><div class="rc">Nicolle</div><div class="rc">Bryn</div><div class="rc">Scott</div>
+    </div>
+  </div>
+
+  <div class="peers">
+    <div class="card simone">
+      <div class="dmtag">Decision-maker</div>
+      <div class="nm">Simone</div>
+      <div class="rl">Revenue Recovery capacity, forecasting &amp; performance</div>
+      <div class="wgl">Her forecast is the number everyone builds on — CS presents it, CoE builds recommendations on it, no one re-derives it.</div>
+      <div class="subteam">Service Delivery: Josh (Lead) + 37 Specialists</div>
+    </div>
+    <div class="card custops">
+      <div class="dmtag">Decision-maker · Q3 Hire</div>
+      <div class="nm">Customer Ops Lead</div>
+      <div class="rl">Implementation Project Manager &amp; Customer Workflows</div>
+      <div class="wgl">Owns project management of new customer implementations, invoicing, and turning unique customer requests into repeatable execution.</div>
+    </div>
+    <div class="card noah">
+      <div class="dmtag">Decision-maker</div>
+      <div class="nm">Noah</div>
+      <div class="rl">Biller execution &amp; throughput</div>
+      <div class="wgl">Every biller has what they need to hit target, executes Simone's plan, and designs initiatives that improve biller quality.</div>
+      <div class="subteam">BPO Management: AnnexMed Usage and Purview Ramp-down</div>
+    </div>
+    <div class="card jake">
+      <div class="dmtag">Product Partner</div>
+      <div class="nm">Jake</div>
+      <div class="rl">Transitioning onboarding to Ops</div>
+      <div class="wgl">Hands off enterprise onboarding cleanly to RCSMs + Customer Ops Lead — full visibility left behind.</div>
+    </div>
+  </div>
+
+  <div class="foot">Operating Plan 2 · H2 2026</div>
+
+</div>
+</body>
+</html>
